@@ -177,6 +177,14 @@
                 <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li> --}}
               </ul>
             </li>
+            <li class="nav-item dropdown" id="myDropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fab fa-wpforms"></i> Forms  </a>
+                <ul class="dropdown-menu">
+                  <li> <a class="dropdown-item" href="/forms"><i class="fas fa-user-tie"></i> Registraion form (client-side validation) </a></li>
+                  <li> <a class="dropdown-item" href="/forms_server"><i class="fas fa-server"></i> Registraion form (server-side validation) </a></li>
+
+                </ul>
+            </li>
           </ul>
         </div>
         <!-- navbar-collapse.// -->

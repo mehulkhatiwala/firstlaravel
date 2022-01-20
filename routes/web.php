@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BasicController;
 use App\Http\Controllers\SingleActionController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\Registration;
+use App\Http\Controllers\Registration_server_validation;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,12 @@ Route::get('/basic_controller', 'BasicController@start');  // This is the not a 
 Route::get('/single_action_controller', 'SingleActionController');
 
 Route::resource ('/photo', 'ResourceController');
+
+Route::get('/forms', [Registration::class, 'index']);
+Route::post('/forms', [Registration::class, 'register']);
+
+Route::get('/forms_server', [Registration_server_validation::class, 'start']);
+Route::post('/forms_server', [Registration_server_validation::class, 'register']);
 
 // Route::get('/mydemoroute', function() {
 //     return view('demo');
