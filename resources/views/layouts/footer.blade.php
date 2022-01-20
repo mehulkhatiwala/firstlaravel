@@ -99,10 +99,40 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
       <script>
-        $(".nav li a").on("click", function(){
-            $(".nav-link").find(".active").removeClass("active");
-            $(this).parent().addClass("active");
-        });
+        document.addEventListener("DOMContentLoaded", function(){
+        // make it as accordion for smaller screens
+        if (window.innerWidth < 992) {
+
+          // close all inner dropdowns when parent is closed
+          document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+            everydropdown.addEventListener('hidden.bs.dropdown', function () {
+              // after dropdown is hidden, then find all submenus
+                this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+                  // hide every submenu as well
+                  everysubmenu.style.display = 'none';
+                });
+            })
+          });
+
+          document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+            element.addEventListener('click', function (e) {
+                let nextEl = this.nextElementSibling;
+                if(nextEl && nextEl.classList.contains('submenu')) {	
+                  // prevent opening link if link needs to open dropdown
+                  e.preventDefault();
+                  if(nextEl.style.display == 'block'){
+                    nextEl.style.display = 'none';
+                  } else {
+                    nextEl.style.display = 'block';
+                  }
+
+                }
+            });
+          })
+        }
+        // end if innerWidth
+        }); 
+        // DOMContentLoaded  end
       </script>
 </body>
 </html>

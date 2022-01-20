@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BasicController;
+use App\Http\Controllers\SingleActionController;
+use App\Http\Controllers\ResourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +43,12 @@ Route::any('/test', function() {
     echo "Testing the any (get or post) route";
 });
 
+
+// Route::get('/basic_controller', [BasicController::class, 'start']);     // This is the recommonded method to use for controller
+Route::get('/basic_controller', 'BasicController@start');  // This is the not a recommonded method to use for controller
+Route::get('/single_action_controller', 'SingleActionController');
+
+Route::resource ('/photo', 'ResourceController');
 
 // Route::get('/mydemoroute', function() {
 //     return view('demo');

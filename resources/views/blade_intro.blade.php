@@ -124,5 +124,14 @@
 		<hr/>
 		<h3>EXTENDS Directive</h3>
 			This directive is used to specify which layout the child view should extend (<a href="/about/Mehul's Collection">click here</a> to see example (About Us page))
+
+		<hr/>
+		<h3>STACK Directive</h3>
+			To render the complete stack contents, pass the name of the stack to stack directive
+
+		<hr/>
+		<h3>PUSH Directive</h3>
+			This directive is used to push data into stack directives
+		<br/><br/><br/>
 </div>
 @endsection
