@@ -6,6 +6,7 @@ use App\Http\Controllers\SingleActionController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\Registration;
 use App\Http\Controllers\Registration_server_validation;
+use App\Http\Controllers\components;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,9 @@ Route::post('/forms', [Registration::class, 'register']);
 
 Route::get('/forms_server', [Registration_server_validation::class, 'start']);
 Route::post('/forms_server', [Registration_server_validation::class, 'register']);
+
+Route::get('/components', [components::class, 'myfunc']);
+Route::post('/components', [components::class, 'myfunc2']);
 
 // Route::get('/mydemoroute', function() {
 //     return view('demo');

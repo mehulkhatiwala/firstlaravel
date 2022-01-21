@@ -185,6 +185,7 @@
 
                 </ul>
             </li>
+            <li class="nav-item active"> <a class="nav-link" href="/components"><i class="fas fa-recycle"></i>&nbsp;Components </a> </li>
           </ul>
         </div>
         <!-- navbar-collapse.// -->

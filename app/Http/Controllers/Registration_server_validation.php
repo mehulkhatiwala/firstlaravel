@@ -15,9 +15,13 @@ class Registration_server_validation extends Controller
             [
                 "name" => "required",
                 "email" => "required|email",
-                "password" => "required"
+                "password" => "required|confirmed",
+                "password_confirmation" => "required",
+                // "my_password" => "required",
+                // "confirm_password" => "required|same:my_password",
             ]
         );
+
         echo "<pre>";
         print_r($req->all());
     }
