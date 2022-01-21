@@ -140,7 +140,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">LARAVEL LEARNING</a>
+        <a class="navbar-brand" href="https://laravel.com/" target="_blank"><img src="https://laravel.com/img/logomark.min.svg" alt="Laravel" width="50" height="52" /> LEARNING</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -185,7 +185,7 @@
 
                 </ul>
             </li>
-            <li class="nav-item active"> <a class="nav-link" href="/components"><i class="fas fa-recycle"></i>&nbsp;Components </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="/components"><i class="fas fa-recycle"></i>&nbsp;Components </a> </li>
           </ul>
         </div>
         <!-- navbar-collapse.// -->
