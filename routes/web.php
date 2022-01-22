@@ -7,6 +7,7 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\Registration;
 use App\Http\Controllers\Registration_server_validation;
 use App\Http\Controllers\components;
+use App\Http\Controllers\AllCustomers;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +33,12 @@ Route::get('/blade-intro/{name?}', function($name = null){
 Route::get('/home/{name?}', function ($name = null){
     $data = compact('name', $name);
     return view('home')->with($data);
-});
+})->name('home');
 
 Route::get('/about/{company?}', function ($company = null){
     return view('about')->with(['company'=>$company]);
-});
+})->name('about');
+
 
 // Route::get('/demo', function() {
 //     echo "welcome to demo page!!!";
@@ -48,19 +50,21 @@ Route::any('/test', function() {
 
 
 // Route::get('/basic_controller', [BasicController::class, 'start']);     // This is the recommonded method to use for controller
-Route::get('/basic_controller', 'BasicController@start');  // This is the not a recommonded method to use for controller
-Route::get('/single_action_controller', 'SingleActionController');
+Route::get('/controller/basic_controller', 'BasicController@start')->name('basic_controller');  // This is the not a recommonded method to use for controller
+Route::get('/controller/single_action_controller', 'SingleActionController')->name('single_action_controller');
 
-Route::resource ('/photo', 'ResourceController');
+Route::resource('/controller/photo', 'ResourceController');
 
-Route::get('/forms', [Registration::class, 'index']);
-Route::post('/forms', [Registration::class, 'register']);
+Route::get('/validation/forms', [Registration::class, 'index'])->name('index_client_validation');
+Route::post('/validation/forms', [Registration::class, 'register'])->name('register_client_validation');
 
-Route::get('/forms_server', [Registration_server_validation::class, 'start']);
-Route::post('/forms_server', [Registration_server_validation::class, 'register']);
+Route::get('/validation/forms_server', [Registration_server_validation::class, 'start'])->name('start_server_validation');
+Route::post('/validation/forms_server', [Registration_server_validation::class, 'register'])->name('register_server_validation');
 
 Route::get('/components', [components::class, 'myfunc']);
 Route::post('/components', [components::class, 'myfunc2']);
+
+Route::get('/database/view_all_customers', [AllCustomers::class, 'index'])->name('select');
 
 // Route::get('/mydemoroute', function() {
 //     return view('demo');

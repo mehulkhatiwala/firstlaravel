@@ -4,7 +4,7 @@
 @endpush
 @section('main-section')
     <br/>
-    <form class="row g-3 needs-validation" action="{{url('/')}}/forms" method="POST" novalidate>
+    <form class="row g-3 needs-validation" action="{{url('/')}}/validation/forms" method="POST" novalidate>
         @csrf
         {{-- Full name begin --}}
         <div class="col-md-4">

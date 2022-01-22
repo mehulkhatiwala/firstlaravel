@@ -3,7 +3,7 @@
     <title>Form :: Server-side validation</title>
 @endpush
 @section('main-section')
-    <form action="{{url('/')}}/forms_server" method="POST">
+    <form action="{{url('/')}}/validation/forms_server" method="POST">
         @csrf
         {{-- @php
             if(count($errors->all()) !== 0) {

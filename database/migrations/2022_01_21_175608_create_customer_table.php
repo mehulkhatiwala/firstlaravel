@@ -14,7 +14,7 @@ class CreateCustomerTable extends Migration
     public function up()
     {
         Schema::create('customer', function (Blueprint $table) {
-            $table->id();           // Change in field name $table->id('customer_id');
+            $table->bigIncrements('id');           // Change in field name $table->id('customer_id');
             $table->string('name', 255);
             $table->string('email', 100);
             $table->enum('gender', ["m", "f", "o"])->nullable();

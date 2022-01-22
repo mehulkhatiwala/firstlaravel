@@ -11,8 +11,12 @@ class components extends Controller
     }
 
     public function myfunc2(Request $request){
-        
+        $request->validate([
+            "name" =>"required",
+        ]);
+
         echo "<pre>";
+        // print_r($errors->all());
         print_r($request->all());
     }
 }

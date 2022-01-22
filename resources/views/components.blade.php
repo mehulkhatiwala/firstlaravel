@@ -3,6 +3,15 @@
     <title>Components (Reusability)</title>
 @endpush
 @section('main-section')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{url('/')}}/components" method="POST">
         @csrf
         <h1 class='text-center'>User Registration (validation at server-side)</h1>

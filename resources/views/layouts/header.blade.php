@@ -146,20 +146,20 @@
         </button>
         <div class="collapse navbar-collapse" id="main_nav">
           <ul class="navbar-nav">
-            <li class="nav-item active"> <a class="nav-link" href="/home/Meehul"><i class="fas fa-home"></i>&nbsp;Home </a> </li>
-            <li class="nav-item"><a class="nav-link" href="/about"><i class="fas fa-address-card"></i> About </a></li>
-            <li class="nav-item"><a class="nav-link" href="/blade-intro"><i class="fas fa-chalkboard-teacher"></i> Blade Template Intro </a></li>
-            <li class="nav-item dropdown" id="myDropdown">
+            <li class="nav-item {{ (Route::currentRouteName() == 'home') ? 'active' : '' }}"> <a class="nav-link" href="{{route('home')}}"><i class="fas fa-home"></i>&nbsp;Home </a> </li>
+            <li class="nav-item {{ (Route::currentRouteName() == 'about') ? 'active' : '' }}"><a class="nav-link" href="{{route('about')}}"><i class="fas fa-address-card"></i> About </a></li>
+            <li class="nav-item {{ (request()->segment(1) == 'blade-intro') ? 'active' : '' }}"><a class="nav-link" href="/blade-intro"><i class="fas fa-chalkboard-teacher"></i> Blade Template Intro </a></li>
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'controller') ? 'active' : '' }}" id="myDropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-gamepad"></i> Controllers  </a>
               <ul class="dropdown-menu">
-                <li> <a class="dropdown-item" href="/basic_controller"><i class="fab fa-accusoft"></i> Basic Controllers </a></li>
-                <li> <a class="dropdown-item" href="/single_action_controller"><i class="fas fa-radiation"></i> Single-action Controller </a></li>
-                <li> <a class="dropdown-item" href="#"><i class="fas fa-database"></i> Resource Controller <i class="fas fa-angle-double-right"></i></a>
+                <li> <a class="dropdown-item {{ (request()->segment(2) == 'basic_controller') ? 'active' : '' }}" href="{{route('basic_controller')}}"><i class="fab fa-accusoft"></i> Basic Controllers </a></li>
+                <li> <a class="dropdown-item {{ (request()->segment(2) == 'single_action_controller') ? 'active' : '' }}" href="{{route('single_action_controller')}}"><i class="fas fa-radiation"></i> Single-action Controller </a></li>
+                <li> <a class="dropdown-item {{ (request()->segment(2) == 'photo') ? 'active' : '' }}" href="#"><i class="fas fa-database"></i> Resource Controller <i class="fas fa-angle-double-right"></i></a>
                   <ul class="submenu dropdown-menu">
-                    <li><a class="dropdown-item" href="/photo"><i class="fas fa-phone-volume"></i> &fnof;(index)</a></li>
-                    <li><a class="dropdown-item" href="/photo/create"><i class="fas fa-phone-volume"></i> &fnof;(create)</a></li>
+                    <li><a class="dropdown-item {{ (request()->segment(3) == '') ? 'active' : '' }}" href="/controller/photo"><i class="fas fa-phone-volume"></i> &fnof;(index)</a></li>
+                    <li><a class="dropdown-item {{ (request()->segment(3) == 'create') ? 'active' : '' }}" href="/controller/photo/create"><i class="fas fa-phone-volume"></i> &fnof;(create)</a></li>
                     <li><a class="dropdown-item disabled" href="#"><i class="fas fa-phone-volume"></i> &fnof;(store)</a></li>
-                    <li><a class="dropdown-item" href="/photo/Meehul ki id"><i class="fas fa-phone-volume"></i> &fnof;(show)</a></li>
+                    <li><a class="dropdown-item {{ (request()->segment(3) == 'Meehul ki id') ? 'active' : '' }}" href="/controller/photo/Meehul ki id"><i class="fas fa-phone-volume"></i> &fnof;(show)</a></li>
                     <li><a class="dropdown-item disabled" href="#"><i class="fas fa-phone-volume"></i> &fnof;(edit)</a></li>
                     <li><a class="dropdown-item disabled" href="#"><i class="fas fa-phone-volume"></i> &fnof;(update)</a></li>
                     <li><a class="dropdown-item disabled" href="#"><i class="fas fa-phone-volume"></i> &fnof;(destroy)</a></li>
@@ -177,15 +177,24 @@
                 <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li> --}}
               </ul>
             </li>
-            <li class="nav-item dropdown" id="myDropdown">
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'validation') ? 'active' : ''}}" id="myDropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fab fa-wpforms"></i> Forms  </a>
                 <ul class="dropdown-menu">
-                  <li> <a class="dropdown-item" href="/forms"><i class="fas fa-user-tie"></i> Registraion form (client-side validation) </a></li>
-                  <li> <a class="dropdown-item" href="/forms_server"><i class="fas fa-server"></i> Registraion form (server-side validation) </a></li>
+                  <li> <a class="dropdown-item {{(request()->segment(2)=='forms') ? 'active' : '' }}" href="{{route('index_client_validation')}}"><i class="fas fa-user-tie"></i> Registraion form (client-side validation) </a></li>
+                  <li> <a class="dropdown-item {{(request()->segment(2)=='forms_server') ? 'active' : '' }}" href="{{route('start_server_validation')}}"><i class="fas fa-server"></i> Registraion form (server-side validation) </a></li>
 
                 </ul>
             </li>
-            <li class="nav-item"> <a class="nav-link" href="/components"><i class="fas fa-recycle"></i>&nbsp;Components </a> </li>
+            <li class="nav-item {{ (request()->segment(1) == 'components') ? 'active' : '' }}"> <a class="nav-link" href="/components"><i class="fas fa-recycle"></i>&nbsp;Components </a> </li>
+            <li class="nav-item dropdown {{ (request()->segment(1) == 'database') ? 'active' : '' }}" id="myDropdown3">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-database"></i> Database (CRUD)  </a>
+              <ul class="dropdown-menu">
+                <li> <a class="dropdown-item {{ (Route::currentRouteName() == 'select') ? 'active' : '' }}" href="{{route('select')}}"><i class="fab fa-readme"></i>&nbsp;READ </a> </li>
+                <li> <a class="dropdown-item" href="#"><i class="fas fa-plus-circle"></i>&nbsp;CREATE </a> </li>
+                <li> <a class="dropdown-item" href="#"><i class="fas fa-edit"></i>&nbsp;UPDATE </a> </li>
+                <li> <a class="dropdown-item" href="#"><i class="fas fa-trash-alt"></i>&nbsp;DELETE </a> </li>
+              </ul>
+            </li>
           </ul>
         </div>
         <!-- navbar-collapse.// -->
