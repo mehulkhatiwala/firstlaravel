@@ -8,6 +8,7 @@ use App\Http\Controllers\Registration;
 use App\Http\Controllers\Registration_server_validation;
 use App\Http\Controllers\components;
 use App\Http\Controllers\AllCustomers;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/blade-intro/{name?}', function($name = null){
     $demo = "<h5>Html entity demo</h5>";
     $data = compact('name', 'demo');
     return view('blade_intro')->with($data);
-});
+})->name('blade.intro');
 // Route::get('/{name?}', function ($name = null) {
 //     return view('home')->with(['name'=>$name]);
 // });
@@ -66,6 +67,10 @@ Route::post('/components', [components::class, 'myfunc2']);
 
 Route::get('/database/view_all_customers', [AllCustomers::class, 'index'])->name('select');
 
+Route::get('/database/crud/registration', [CustomerController::class, 'index']);
+Route::post('/database/crud/registration', [CustomerController::class, 'store']);
+Route::get('/database/crud/customers', [CustomerController::class, 'view'])->name('customer.view');
+Route::get('/database/crud/customers/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
 // Route::get('/mydemoroute', function() {
 //     return view('demo');
 // });

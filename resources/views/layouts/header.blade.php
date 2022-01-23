@@ -189,10 +189,11 @@
             <li class="nav-item dropdown {{ (request()->segment(1) == 'database') ? 'active' : '' }}" id="myDropdown3">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-database"></i> Database (CRUD)  </a>
               <ul class="dropdown-menu">
-                <li> <a class="dropdown-item {{ (Route::currentRouteName() == 'select') ? 'active' : '' }}" href="{{route('select')}}"><i class="fab fa-readme"></i>&nbsp;READ </a> </li>
-                <li> <a class="dropdown-item" href="#"><i class="fas fa-plus-circle"></i>&nbsp;CREATE </a> </li>
+                <li> <a class="dropdown-item {{ (Route::currentRouteName() == 'select') ? 'active' : '' }}" href="{{route('select')}}"><i class="fab fa-readme"></i>&nbsp;READ (without controller)</a> </li>
+                <li> <a class="dropdown-item {{ (request()->segment(3) == 'registration') ? 'active' : '' }}" href="{{url('/database/crud/registration')}}"><i class="fas fa-plus-circle"></i>&nbsp;CREATE </a> </li>
+                <li> <a class="dropdown-item {{ (request()->segment(3) == 'customers') ? 'active' : '' }}" href="{{route('customer.view')}}"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;READ (With controller) </a> </li>
                 <li> <a class="dropdown-item" href="#"><i class="fas fa-edit"></i>&nbsp;UPDATE </a> </li>
-                <li> <a class="dropdown-item" href="#"><i class="fas fa-trash-alt"></i>&nbsp;DELETE </a> </li>
+                <li> <a class="dropdown-item disabled" href="#"><i class="fas fa-trash-alt"></i>&nbsp;DELETE </a> </li>
               </ul>
             </li>
           </ul>
