@@ -78,8 +78,11 @@ Route::post('/database/crud/customers/update/{id}',[CustomerController::class, '
 // SOFTDELETE FUNCTIONALITY
 Route::get('/database/crud/softdelete/registration', [CustomerSoftDeleteController::class, 'index'])->name('customer_reg');
 Route::post('database/crud/softdelete/registration', [CustomerSoftDeleteController::class, 'store'])->name('customer_save');
-Route::get('database/crud/softdelete/customers', [CustomerSoftDeleteController::class, 'show'])->name('customer_display');
+Route::get('database/crud/softdelete/customers/trash', [CustomerSoftDeleteController::class, 'show_trashed_only'])->name('customer_trashed_display');
+Route::get('database/crud/softdelete/customers/all', [CustomerSoftDeleteController::class, 'show_except_trashed'])->name('customer_except_trashed_display');
 Route::get('database/crud/softdelete/delete/{id}', [CustomerSoftDeleteController::class, 'soft_delete'])->name('customer_soft_delete');
+Route::get('database/crud/softdelete/force_delete/{id}', [CustomerSoftDeleteController::class, 'force_delete'])->name('customer_force_delete');
+Route::get('database/crud/softdelete/restore/{id}', [CustomerSoftDeleteController::class, 'restore'])->name('customer_restore');
 
 
 

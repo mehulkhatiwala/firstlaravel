@@ -1,0 +1,9 @@
+{
+    "editor.wordWrap": "on",
+    "editor.fastScrollSensitivity": 10,
+    "workbench.iconTheme": "vs-minimal",
+    "workbench.preferredHighContrastColorTheme": "Default Dark+",
+    "workbench.preferredLightColorTheme": "Default Dark+",
+    "editor.accessibilitySupport": "on",
+    "editor.mouseWheelZoom": true
+}

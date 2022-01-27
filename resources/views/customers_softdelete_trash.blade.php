@@ -4,10 +4,9 @@
 @endpush
 @section('main-section')
     {{-- {!!($msg!= null) ? $msg : ''!!} --}}
-    <h1 class='text-center'>List of all Customers (SoftDeletes)</h1>
+    <h1 class='text-center'>List of all Customers (SoftDeletes - Trashed Data)</h1>
     <hr/>
     <a href="{{route('customer_reg')}}"><button class="btn btn-primary float-right">Add More Customers</button></a>
-    <a href="{{route('customer_trashed_display')}}"><button class="btn btn-danger float-right">Go to Trash</button></a>
     <pre>
     @php
         // print_r(Session::all());
@@ -42,8 +41,8 @@
                         <td>{{ $customer->dob }}</td>
                         <td width="20%">{{$customer->address.", ".$customer->state.", ".$customer->country}}</td>
                         <td>@if($customer->status == 1)<span class="btn-success">Active</span> @else <span class="btn-danger">Inactive</span> @endif </td>
-                        <td><a href="{{route('customer.edit', ['id' => $customer->id])}}"><button class="btn btn-primary">Edit</button></a></td>
-                        <td><a href="{{route('customer_soft_delete', ['id' => $customer->id])}}"><button class="btn btn-warning">Move to Trash</button></a></td>
+                        <td><a href="{{route('customer_restore', ['id' => $customer->id])}}"><button class="btn btn-success">Restore</button></a></td>
+                        <td><a href="{{route('customer_force_delete', ['id' => $customer->id])}}"><button class="btn btn-danger">Delete</button></a></td>
                     </tr>
                     @php
                         $i++

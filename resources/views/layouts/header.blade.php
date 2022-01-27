@@ -201,7 +201,9 @@
                 <li> <a class="dropdown-item disabled" href="#"><i class="fas fa-trash-alt"></i>&nbsp;DELETE </a> </li>
                 <li> <a class="dropdown-item {{ (request()->segment(3) == 'softdelete') ? 'active' : '' }}" href="#"><i class="fas fa-database"></i> DB Softdelete<i class="fas fa-angle-double-right float-right"></i></a>
                   <ul class="submenu dropdown-menu">
-                    <li><a class="dropdown-item {{ (request()->segment(4) == 'registration') ? 'active' : '' }}" href="{{route('customer_reg')}}"><i class="fas fa-phone-volume"></i> Create Customer</a></li>
+                    <li><a class="dropdown-item {{ (request()->segment(4) == 'registration') ? 'active' : '' }}" href="{{route('customer_reg')}}"><i class="fa fa-registered" aria-hidden="true"></i> Create Customer</a></li>
+                    <li><a class="dropdown-item {{ (request()->segment(5) == 'all') ? 'active' : '' }}" href="{{route('customer_except_trashed_display')}}"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;READ (All except Trashed Data) </a> </li>
+                    <li><a class="dropdown-item {{ (request()->segment(5) == 'trash') ? 'active' : '' }}" href="{{route('customer_trashed_display')}}"><i class="fa fa-ban" aria-hidden="true"></i></i>&nbsp;READ (Only Trashed Data) </a> </li>
                   </ul>
               </ul>
             </li>

@@ -115,16 +115,21 @@
           $('.alert-danger').slideDown().delay(3000).slideUp('slow');
         });        
       </script>
-      
-      @if (Session::has('success'))
-        <script>
-          toastr.success("{!! Session::get('success') !!}");
-        </script>
-      @elseif (Session::has('failed'))
-        <script>
-          toastr.error("{!! Session::get('failed') !!}");
-        </script>
-      @endif
+      @isset($status)
+        @if ($status == 'success')
+          <script>
+            toastr.success("{{ $msg }}");
+          </script>
+        @elseif ($status == 'failed')
+          <script>
+            toastr.error("{{ $msg }}");
+          </script>
+        @elseif ($status == 'warning')
+          <script>
+            toastr.warning("{{ $msg }}");
+          </script>
+        @endif
+      @endisset
       <script>
         document.addEventListener("DOMContentLoaded", function(){
         // make it as accordion for smaller screens
