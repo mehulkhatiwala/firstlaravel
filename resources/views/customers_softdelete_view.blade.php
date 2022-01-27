@@ -3,18 +3,19 @@
     <title>Our All Customers (Using Customer Controller)</title>
 @endpush
 @section('main-section')
-    <h1 class='text-center'>List of all Customers</h1>
+    {{-- {!!($msg!= null) ? $msg : ''!!} --}}
+    <h1 class='text-center'>List of all Customers (SoftDeletes)</h1>
     <hr/>
-    <a href="{{url('/database/crud/registration')}}"><button class="btn btn-primary float-right">Add</button></a>
+    <a href="{{route('customer_reg')}}"><button class="btn btn-primary float-right">Add More Customers</button></a>
     <pre>
     @php
-        // print_r($customers->toArray());
-        // die;
+        print_r(Session::all());
+        die;
         // $customers = $customers->toArray();
     @endphp
         <div class="table-responsive">
           <table class="table caption-top table-sm">
-            <caption class="text-center"><span style="font-style: bold;">Table 1:</span> Our all customers (through Customer Controller)</caption>
+            <caption class="text-center"><span style="font-style: bold;">Table 1:</span> Our all customers (softdelete functionality)</caption>
             <thead>
               <tr>
                 <th scope="col" width="5%">#</th>
@@ -41,7 +42,7 @@
                         <td width="20%">{{$customer->address.", ".$customer->state.", ".$customer->country}}</td>
                         <td>@if($customer->status == 1)<span class="btn-success">Active</span> @else <span class="btn-danger">Inactive</span> @endif </td>
                         <td><a href="{{route('customer.edit', ['id' => $customer->id])}}"><button class="btn btn-primary">Edit</button></a></td>
-                        <td><a href="{{route('customer.delete', ['id' => $customer->id])}}"><button class="btn btn-danger">Delete</button></a></td>
+                        <td><a href="{{route('customer_soft_delete', ['id' => $customer->id])}}"><button class="btn btn-warning">Move to Trash</button></a></td>
                     </tr>
                     @php
                         $i++

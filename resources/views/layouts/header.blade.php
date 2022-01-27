@@ -8,6 +8,11 @@
     @stack('title')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/cd2f54a5d7.js" crossorigin="anonymous"></script>
+
+    <!-- Toastr CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
     <style>
         a {
         color: #6c757d;
@@ -192,10 +197,16 @@
                 <li> <a class="dropdown-item {{ (Route::currentRouteName() == 'select') ? 'active' : '' }}" href="{{route('select')}}"><i class="fab fa-readme"></i>&nbsp;READ (without controller)</a> </li>
                 <li> <a class="dropdown-item {{ (request()->segment(3) == 'registration') ? 'active' : '' }}" href="{{url('/database/crud/registration')}}"><i class="fas fa-plus-circle"></i>&nbsp;CREATE </a> </li>
                 <li> <a class="dropdown-item {{ (request()->segment(3) == 'customers') ? 'active' : '' }}" href="{{route('customer.view')}}"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;READ (With controller) </a> </li>
-                <li> <a class="dropdown-item" href="#"><i class="fas fa-edit"></i>&nbsp;UPDATE </a> </li>
+                <li> <a class="dropdown-item disabled" href="#"><i class="fas fa-edit"></i>&nbsp;UPDATE </a> </li>
                 <li> <a class="dropdown-item disabled" href="#"><i class="fas fa-trash-alt"></i>&nbsp;DELETE </a> </li>
+                <li> <a class="dropdown-item {{ (request()->segment(3) == 'softdelete') ? 'active' : '' }}" href="#"><i class="fas fa-database"></i> DB Softdelete<i class="fas fa-angle-double-right float-right"></i></a>
+                  <ul class="submenu dropdown-menu">
+                    <li><a class="dropdown-item {{ (request()->segment(4) == 'registration') ? 'active' : '' }}" href="{{route('customer_reg')}}"><i class="fas fa-phone-volume"></i> Create Customer</a></li>
+                  </ul>
               </ul>
             </li>
+            <li class="nav-item {{ (request()->segment(1) == 'components') ? 'active' : '' }}"> <a class="nav-link" href="{{route('session.demo')}}"><i class="fas fa-info-circle"></i>&nbsp;Laravel Session </a> </li>
+
           </ul>
         </div>
         <!-- navbar-collapse.// -->

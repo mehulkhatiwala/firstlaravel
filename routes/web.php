@@ -9,6 +9,7 @@ use App\Http\Controllers\Registration_server_validation;
 use App\Http\Controllers\components;
 use App\Http\Controllers\AllCustomers;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerSoftDeleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,31 @@ Route::get('/database/crud/registration', [CustomerController::class, 'index']);
 Route::post('/database/crud/registration', [CustomerController::class, 'store']);
 Route::get('/database/crud/customers', [CustomerController::class, 'view'])->name('customer.view');
 Route::get('/database/crud/customers/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
+Route::get('/database/crud/customers/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+Route::post('/database/crud/customers/update/{id}',[CustomerController::class, 'update'])->name('customer.update');
+
+// SOFTDELETE FUNCTIONALITY
+Route::get('/database/crud/softdelete/registration', [CustomerSoftDeleteController::class, 'index'])->name('customer_reg');
+Route::post('database/crud/softdelete/registration', [CustomerSoftDeleteController::class, 'store'])->name('customer_save');
+Route::get('database/crud/softdelete/customers', [CustomerSoftDeleteController::class, 'show'])->name('customer_display');
+Route::get('database/crud/softdelete/delete/{id}', [CustomerSoftDeleteController::class, 'soft_delete'])->name('customer_soft_delete');
+
+
+
+
+
+
+Route::get('/session', [CustomerController::class, 'session_management'])->name('session.demo');
+Route::post('/session', [CustomerController::class, 'session_add'])->name('session.add');
+Route::get('/view_session_data', function(){
+    $session = session()->all();
+    $data = compact('session');
+    return view('/view_session_data')->with($data);
+})->name('session_all');
+Route::get('/destroy_session_data', function(){
+    session()->flush();
+    return redirect()->route('session_all');
+})->name('session_destroy');
 // Route::get('/mydemoroute', function() {
 //     return view('demo');
 // });

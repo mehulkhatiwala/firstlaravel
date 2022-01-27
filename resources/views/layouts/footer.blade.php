@@ -97,15 +97,34 @@
         </div>
       </footer>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-      {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <!-- Toastr JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
       <script type="text/javascript">
-        $(document).on('click', '.navbar-collapse .navbar-nav .nav-item', function(){
-          // console.log(this);
-          $(this).addClass('active').siblings().removeClass('active');  
-          return false;
-        });
-      </script> --}}
+        // $(document).on('click', '.navbar-collapse .navbar-nav .nav-item', function(){
+        //   // console.log(this);
+        //   $(this).addClass('active').siblings().removeClass('active');  
+        //   return false;
+        // });
+        $(document).ready(function(){
+          // $('.alert-success').fadeIn().delay(5000).fadeOut();
+          $('.alert-success').slideDown().delay(3000).slideUp('slow');
+          $('.alert-warning').slideDown().delay(3000).slideUp('slow');
+          $('.alert-danger').slideDown().delay(3000).slideUp('slow');
+        });        
+      </script>
+      
+      @if (Session::has('success'))
+        <script>
+          toastr.success("{!! Session::get('success') !!}");
+        </script>
+      @elseif (Session::has('failed'))
+        <script>
+          toastr.error("{!! Session::get('failed') !!}");
+        </script>
+      @endif
       <script>
         document.addEventListener("DOMContentLoaded", function(){
         // make it as accordion for smaller screens
