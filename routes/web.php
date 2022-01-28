@@ -11,6 +11,12 @@ use App\Http\Controllers\AllCustomers;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerSoftDeleteController;
 
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\AboutController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\ShopController;
+use App\Http\Controllers\Frontend\ShopSingleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,7 +91,12 @@ Route::get('database/crud/softdelete/force_delete/{id}', [CustomerSoftDeleteCont
 Route::get('database/crud/softdelete/restore/{id}', [CustomerSoftDeleteController::class, 'restore'])->name('customer_restore');
 
 
-
+// CONVERT HTML TEMPLATE INTO LARAVEL PROJECT
+Route::get('/', [HomeController::class, 'index'])->name('home_page');
+Route::get('/AboutUs', [AboutController::class, 'index'])->name('about_page');
+Route::get('/Contact', [ContactController::class, 'index'])->name('contact_page');
+Route::get('/Shop', [ShopController::class, 'index'])->name('shop_page');
+Route::get('/Shop-Single', [ShopSingleController::class, 'index'])->name('shop_single_page');
 
 
 
