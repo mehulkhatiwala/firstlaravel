@@ -95,6 +95,7 @@ Route::get('database/crud/softdelete/restore/{id}', [CustomerSoftDeleteControlle
 Route::get('/', [HomeController::class, 'index'])->name('home_page');
 Route::get('/AboutUs', [AboutController::class, 'index'])->name('about_page');
 Route::get('/Contact', [ContactController::class, 'index'])->name('contact_page');
+Route::post('/Contact', [ContactController::class, 'store'])->name('store_contact');
 Route::get('/Shop', [ShopController::class, 'index'])->name('shop_page');
 Route::get('/Shop-Single', [ShopSingleController::class, 'index'])->name('shop_single_page');
 

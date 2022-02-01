@@ -43,31 +43,86 @@
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
+            {{-- <form class="col-md-9 m-auto" method="post" role="form"> --}}
+            {!! Form::open([
+                'url' => route('store_contact'),
+                'method' => 'post',
+                'id' => 'contact',
+                'role' => 'form',
+                'class' => 'col-md-9 m-auto',
+                'enctype' => 'multipart/form-data'
+            ]) !!}
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname">Name</label>
-                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name">
+                        {{-- <label for="inputname">Name</label>
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Name"> --}}
+                        {!! Form::label('name', 'Name'); !!}
+                        {!! Form::text('name', '', 
+                            [
+                                'class'=>"form-control mt-1", 
+                                'id'=>"name",
+                                'placeholder'=>"Name"
+                            ]) 
+                        !!}
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail">Email</label>
-                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
+                        {{-- <label for="inputemail">Email</label>
+                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="Email"> --}}
+                        {!! Form::label('email', 'E-mail Address'); !!}
+                        {!! Form::text('email', '', 
+                            [
+                                'class'=>"form-control mt-1", 
+                                'id'=>"email",
+                                'placeholder'=>"E-mail"
+                            ]) 
+                        !!}
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="inputsubject">Subject</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
+                    {{-- <label for="inputsubject">Subject</label>
+                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject"> --}}
+                    {!! Form::label('subject', 'Subject'); !!}
+                    {!! Form::text('subject', '', 
+                        [
+                            'class'=>"form-control mt-1", 
+                            'id'=>"subject",
+                            'placeholder'=>"Subject"
+                        ]) 
+                    !!}
                 </div>
                 <div class="mb-3">
-                    <label for="inputmessage">Message</label>
-                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
+                    {{-- <label for="inputmessage">Message</label>
+                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea> --}}
+                    {!! Form::label('message', 'Message'); !!}
+                    {!! Form::textarea('message', '', 
+                        [
+                            'class'=>"form-control mt-1", 
+                            'id'=>"message",
+                            'placeholder'=>"Message",
+                            'rows' => '8',
+                        ]) 
+                    !!}
+                </div>
+                <div class="mb-3">
+                    {!! Form::file('docs', 
+                        [
+                            'class'=>"form-control mt-1", 
+                            'id'=>"docs",
+                            'placeholder'=>"Select file",
+                        ]); 
+                    !!}
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Let’s Talk</button>
+                        {{-- <button type="submit" class="btn btn-success btn-lg px-3">Let’s Talk</button> --}}
+                        {!! Form::submit("Let's Talk!", 
+                            [
+                                'class'=>"btn btn-success btn-lg px-3" ,
+                            ]); !!}
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
+            {{-- </form> --}}
         </div>
     </div>
     <!-- End Contact -->
