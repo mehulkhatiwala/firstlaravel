@@ -76,6 +76,10 @@ https://templatemo.com/tm-559-zay-shop
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('contact_page')}}">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('home')}}"><i class="fab fa-laravel"></i> Laravel Learning</a>
+                        </li>
+
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">

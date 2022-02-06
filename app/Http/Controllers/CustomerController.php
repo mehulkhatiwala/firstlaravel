@@ -8,6 +8,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 use Illuminate\Http\Request;
 use App\Customer;
+use Illuminate\Http\Client\Request as ClientRequest;
 
 class CustomerController extends Controller
 {
@@ -56,8 +57,16 @@ class CustomerController extends Controller
         return redirect('/database/crud/customers');
     }
 
-    public function view(){
-        $customers = Customer::all();
+    public function view(Request $request){
+        // Search functionality
+        $search = $request['search'] ?? "";
+        if(isset($search) && !empty($search)){
+            // WHERE CLAUSE
+            // Model::where('col_name', 'search_type', 'search_value');
+            $customers = Customer::where('name', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->orwhere('dob', "LIKE", "%$search%")->get();
+        } else {
+            $customers = Customer::paginate(15);
+        }
         // echo "<pre>";
         // print_r($customers);
         $data = compact('customers');

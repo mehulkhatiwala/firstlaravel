@@ -208,6 +208,8 @@
               </ul>
             </li>
             <li class="nav-item {{ (request()->segment(1) == 'components') ? 'active' : '' }}"> <a class="nav-link" href="{{route('session.demo')}}"><i class="fas fa-info-circle"></i>&nbsp;Laravel Session </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="{{route('home_page')}}"><i class="fab fa-html5"></i>&nbsp;HTML template Example</a> </li>
+            <li class="nav-item {{ (Route::currentRouteName() == 'localization') ? 'active' : '' }}"> <a class="nav-link" href="{{route('localization')}}"><i class="fab fa-html5"></i>&nbsp;Localization</a> </li>
 
           </ul>
         </div>

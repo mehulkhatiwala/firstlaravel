@@ -6,8 +6,10 @@
     {{-- {!!($msg!= null) ? $msg : ''!!} --}}
     <h1 class='text-center'>List of all Customers (SoftDeletes)</h1>
     <hr/>
-    <a href="{{route('customer_reg')}}"><button class="btn btn-primary float-right">Add More Customers</button></a>
-    <a href="{{route('customer_trashed_display')}}"><button class="btn btn-danger float-right">Go to Trash</button></a>
+    <div class="d-flex flex-row-reverse m-1">
+      <a href="{{route('customer_reg')}}"><button class="btn btn-primary ml-2">Add More Customers</button></a>
+      <a href="{{route('customer_trashed_display')}}"><button class="btn btn-danger mr-2">Go to Trash</button></a>
+    </div>
     <pre>
     @php
         // print_r(Session::all());

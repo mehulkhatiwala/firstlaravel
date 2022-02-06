@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\ShopSingleController;
 
+use Illuminate\Support\Facades\App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,22 +75,31 @@ Route::post('/components', [components::class, 'myfunc2']);
 
 Route::get('/database/view_all_customers', [AllCustomers::class, 'index'])->name('select');
 
-Route::get('/database/crud/registration', [CustomerController::class, 'index']);
-Route::post('/database/crud/registration', [CustomerController::class, 'store']);
-Route::get('/database/crud/customers', [CustomerController::class, 'view'])->name('customer.view');
-Route::get('/database/crud/customers/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
-Route::get('/database/crud/customers/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
-Route::post('/database/crud/customers/update/{id}',[CustomerController::class, 'update'])->name('customer.update');
+Route::group(['prefix' => '/database/crud'], function(){
+    // REGULAR CRUD OPERATION
+    Route::get('/registration', [CustomerController::class, 'index']);
+    Route::post('registration', [CustomerController::class, 'store']);
+    Route::get('customers', [CustomerController::class, 'view'])->name('customer.view');
+    Route::get('customers/delete/{id}', [CustomerController::class, 'destroy'])->name('customer.delete');
+    Route::get('customers/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('customers/update/{id}',[CustomerController::class, 'update'])->name('customer.update');
+    
+    // SOFTDELETE FUNCTIONALITY
+    Route::get('softdelete/registration', [CustomerSoftDeleteController::class, 'index'])->name('customer_reg');
+    Route::post('softdelete/registration', [CustomerSoftDeleteController::class, 'store'])->name('customer_save');
+    Route::get('softdelete/customers/trash', [CustomerSoftDeleteController::class, 'show_trashed_only'])->name('customer_trashed_display');
+    Route::get('softdelete/customers/all', [CustomerSoftDeleteController::class, 'show_except_trashed'])->name('customer_except_trashed_display');
+    Route::get('softdelete/delete/{id}', [CustomerSoftDeleteController::class, 'soft_delete'])->name('customer_soft_delete');
+    Route::get('softdelete/force_delete/{id}', [CustomerSoftDeleteController::class, 'force_delete'])->name('customer_force_delete');
+    Route::get('softdelete/restore/{id}', [CustomerSoftDeleteController::class, 'restore'])->name('customer_restore');
+});
 
-// SOFTDELETE FUNCTIONALITY
-Route::get('/database/crud/softdelete/registration', [CustomerSoftDeleteController::class, 'index'])->name('customer_reg');
-Route::post('database/crud/softdelete/registration', [CustomerSoftDeleteController::class, 'store'])->name('customer_save');
-Route::get('database/crud/softdelete/customers/trash', [CustomerSoftDeleteController::class, 'show_trashed_only'])->name('customer_trashed_display');
-Route::get('database/crud/softdelete/customers/all', [CustomerSoftDeleteController::class, 'show_except_trashed'])->name('customer_except_trashed_display');
-Route::get('database/crud/softdelete/delete/{id}', [CustomerSoftDeleteController::class, 'soft_delete'])->name('customer_soft_delete');
-Route::get('database/crud/softdelete/force_delete/{id}', [CustomerSoftDeleteController::class, 'force_delete'])->name('customer_force_delete');
-Route::get('database/crud/softdelete/restore/{id}', [CustomerSoftDeleteController::class, 'restore'])->name('customer_restore');
+// Localization
+Route::get('localization/{lang?}', function ($lang = null) {
+    App::setlocale($lang);
+    return view('localization');
 
+})->name('localization');
 
 // CONVERT HTML TEMPLATE INTO LARAVEL PROJECT
 Route::get('/', [HomeController::class, 'index'])->name('home_page');
