@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    TEST DOCUMENT
+    <h1>TEST DOCUMENT</h1>
+    <div id="content">
+        This is test document added just to verify the git command working!
+    </div>
 </body>
 </html>
